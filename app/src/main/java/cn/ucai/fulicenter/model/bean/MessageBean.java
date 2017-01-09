@@ -1,0 +1,38 @@
+package cn.ucai.fulicenter.model.bean;
+
+/**
+ * Created by Administrator on 2017/1/9 0009.
+ */
+
+public class MessageBean {
+    private boolean success;
+    private String msg;
+
+
+    public MessageBean() {
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
+
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    @Override
+    public String toString() {
+        return "MessageBean{" +
+                "msg='" + msg + '\'' +
+                ", success=" + success +
+                '}';
+    }
+}
