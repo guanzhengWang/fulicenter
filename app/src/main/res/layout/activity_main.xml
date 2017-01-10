@@ -11,7 +11,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal">
     <RadioButton
-        android:id="@+id/NewGood"
+        android:id="@+id/layoutNewGood"
         android:text="新品"
         android:gravity="center"
         android:button="@null"
@@ -19,28 +19,28 @@
         android:drawableTop="@drawable/selector_menu_item_new_good"
         style="@style/menu_item_style"/>
     <RadioButton
-        android:id="@+id/Boutique"
+        android:id="@+id/layoutBoutique"
         android:text="精品"
         android:button="@null"
         android:checked="false"
         android:drawableTop="@drawable/selector_menu_item_boutique"
         style="@style/menu_item_style"/>
     <RadioButton
-        android:id="@+id/Category"
+        android:id="@+id/layoutCategory"
         android:text="分类"
         android:button="@null"
         android:checked="false"
         android:drawableTop="@drawable/selector_menu_item_category"
         style="@style/menu_item_style"/>
     <RadioButton
-        android:id="@+id/Cart"
+        android:id="@+id/layoutCart"
         android:text="购物车"
         android:button="@null"
         android:checked="false"
         android:drawableTop="@drawable/selector_menu_item_cart"
         style="@style/menu_item_style"/>
     <RadioButton
-        android:id="@+id/Personal"
+        android:id="@+id/layoutPersonal"
         android:text="个人中心"
         android:button="@null"
         android:checked="false"
