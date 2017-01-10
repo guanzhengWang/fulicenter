@@ -1,12 +1,13 @@
 package cn.ucai.fulicenter.model.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/1/9 0009.
  */
 
-public class PropertiesBean {
+public class PropertiesBean implements Serializable{
 
     /**
      * id : 9522
