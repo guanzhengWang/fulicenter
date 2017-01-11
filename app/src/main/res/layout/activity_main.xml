@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context="cn.ucai.fulicenter.controller.activity.MainActivity">
 <LinearLayout
+    android:id="@+id/ll"
     android:layout_alignParentBottom="true"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -48,5 +49,10 @@
         style="@style/menu_item_style"/>
 
 </LinearLayout>
+   <RelativeLayout
+       android:layout_above="@id/ll"
+       android:id="@+id/fragment_container"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
 
 </RelativeLayout>

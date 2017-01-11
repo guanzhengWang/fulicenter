@@ -1,6 +1,7 @@
 package cn.ucai.fulicenter.controller.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioButton;
@@ -8,6 +9,7 @@ import android.widget.RadioButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ucai.fulicenter.R;
+import cn.ucai.fulicenter.controller.fragment.NewGoodsFragment;
 
 public class MainActivity extends AppCompatActivity {
     RadioButton[] rbs;
@@ -40,23 +42,26 @@ public class MainActivity extends AppCompatActivity {
         rbs[2] = layoutCategory;
         rbs[3] = layoutCart;
         rbs[4] = layoutPersonal;
+        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragment_container,new NewGoodsFragment())
+                .commit();
     }
 
     public void onCheckedChange(View view) {
         switch (view.getId()) {
-            case R.id.NewGood:
+            case R.id.layoutNewGood:
                 index = 0;
                 break;
-            case R.id.Boutique:
+            case R.id.layoutBoutique:
                 index = 1;
                 break;
-            case R.id.Category:
+            case R.id.layoutCategory:
                 index = 2;
                 break;
-            case R.id.Cart:
+            case R.id.layoutCart:
                 index = 3;
                 break;
-            case R.id.Personal:
+            case R.id.layoutPersonal:
                 index = 4;
                 break;
         }
