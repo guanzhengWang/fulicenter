@@ -25,6 +25,7 @@ import cn.ucai.fulicenter.model.net.IModelNewGoods;
 import cn.ucai.fulicenter.model.net.ModelNewGoods;
 import cn.ucai.fulicenter.model.net.OnCompleteListener;
 import cn.ucai.fulicenter.model.utils.ConvertUtils;
+import cn.ucai.fulicenter.model.utils.SpaceItemDecoration;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -100,38 +101,40 @@ public class NewGoodsFragment extends Fragment {
 
     private void initData(final int action, int mPageId) {
         model.downData(getContext(), I.CAT_ID, mPageId, new OnCompleteListener<NewGoodsBean[]>() {
-            @Override
-            public void onSuccess(NewGoodsBean[] result) {
-                ArrayList<NewGoodsBean> list = ConvertUtils.array2List(result);
-                Log.e("main", Arrays.toString(result));
-                mAdapter.setMore(result != null && result.length > 0);
-                if (!mAdapter.isMore()) {
-                    if (action == ACTION_PULL_UP) {
-                        return;
+                    @Override
+                    public void onSuccess(NewGoodsBean[] result) {
+                        ArrayList<NewGoodsBean> list = ConvertUtils.array2List(result);
+                        Log.e("main", Arrays.toString(result));
+                        mAdapter.setMore(result != null && result.length > 0);
+                        if (!mAdapter.isMore()) {
+                            if (action == ACTION_PULL_UP) {
+                                mAdapter.setFooter("没有更多数据");
+                            }
+                            return;
+                        }
+                        mAdapter.setFooter("加载更多数据");
+                        switch (action)
+
+                        {
+                            case ACTION_DOWNLOAD:
+                                mAdapter.initData(list);
+                                break;
+                            case ACTION_PULL_DOWN:
+                                mAdapter.initData(list);
+                                srl.setRefreshing(false);
+                                tvRefresh.setVisibility(View.GONE);
+                            case ACTION_PULL_UP:
+                                mAdapter.addData(list);
+                        }
                     }
-                    return;
-                }
-                switch (action) {
-                    case ACTION_DOWNLOAD:
-                        mAdapter.initData(list);
 
-                        break;
-                    case ACTION_PULL_DOWN:
-                        mAdapter.initData(list);
-                        srl.setRefreshing(false);
-                        tvRefresh.setVisibility(View.GONE);
-                    case ACTION_PULL_UP:
-                        mAdapter.addData(list);
+                    @Override
+                    public void onError(String error) {
+
+                    }
                 }
 
-
-            }
-
-            @Override
-            public void onError(String error) {
-
-            }
-        });
+        );
     }
 
 
@@ -147,6 +150,7 @@ public class NewGoodsFragment extends Fragment {
         rv.setHasFixedSize(true);
         mAdapter = new GoodsAdapter(getContext(), mList);
         rv.setAdapter(mAdapter);
+        rv.addItemDecoration(new SpaceItemDecoration(30));
 
     }
 
