@@ -9,6 +9,7 @@ import android.widget.RadioButton;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ucai.fulicenter.R;
+import cn.ucai.fulicenter.controller.fragment.BoutiqueFragment;
 import cn.ucai.fulicenter.controller.fragment.NewGoodsFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,13 +25,17 @@ public class MainActivity extends AppCompatActivity {
     RadioButton layoutCart;
     @BindView(R.id.layoutPersonal)
     RadioButton layoutPersonal;
+    NewGoodsFragment mNewGoodsFragment;
+    BoutiqueFragment mBoutiqueFragment;
 
-
+    Fragment[] mFragments=new Fragment[5];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        mNewGoodsFragment=new NewGoodsFragment();
+        mBoutiqueFragment=new BoutiqueFragment();
         initView();
     }
 
@@ -42,8 +47,13 @@ public class MainActivity extends AppCompatActivity {
         rbs[2] = layoutCategory;
         rbs[3] = layoutCart;
         rbs[4] = layoutPersonal;
+        mFragments[0]=mNewGoodsFragment;
+        mFragments[1]=mBoutiqueFragment;
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container,new NewGoodsFragment())
+                .add(R.id.fragment_container,new BoutiqueFragment())
+                .hide(mBoutiqueFragment)
+                .show(mNewGoodsFragment)
                 .commit();
     }
 
@@ -65,9 +75,16 @@ public class MainActivity extends AppCompatActivity {
                 index = 4;
                 break;
         }
+        setFragment();
         if (index != currentindex) {
             setStatus();
         }
+    }
+
+    private void setFragment() {
+            getSupportFragmentManager().beginTransaction().show(mFragments[index])
+                    .hide(mFragments[currentindex])
+                    .commit();
     }
 
     public void setStatus() {
