@@ -49,7 +49,7 @@
         style="@style/menu_item_style"/>
 
 </LinearLayout>
-   <RelativeLayout
+   <FrameLayout
        android:layout_above="@id/ll"
        android:id="@+id/fragment_container"
        android:layout_width="match_parent"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:textSize="18sp"
     android:textStyle="bold"
-    android:text="@string/now_refresh"
+    android:text="刷新中"
     android:visibility="gone"
     android:gravity="center_horizontal">
 

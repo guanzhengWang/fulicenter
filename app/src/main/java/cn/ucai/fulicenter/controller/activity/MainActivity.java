@@ -3,6 +3,7 @@ package cn.ucai.fulicenter.controller.activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 
@@ -14,7 +15,7 @@ import cn.ucai.fulicenter.controller.fragment.NewGoodsFragment;
 
 public class MainActivity extends AppCompatActivity {
     RadioButton[] rbs;
-    int index, currentindex;
+    int index, Currentindex;
     @BindView(R.id.layoutNewGood)
     RadioButton layoutNewGood;
     @BindView(R.id.layoutBoutique)
@@ -34,12 +35,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        mNewGoodsFragment=new NewGoodsFragment();
-        mBoutiqueFragment=new BoutiqueFragment();
+
         initView();
     }
 
     private void initView() {
+        mNewGoodsFragment=new NewGoodsFragment();
+        mBoutiqueFragment=new BoutiqueFragment();
         rbs = new RadioButton[5];
 
         rbs[0] = layoutNewGood;
@@ -50,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
         mFragments[0]=mNewGoodsFragment;
         mFragments[1]=mBoutiqueFragment;
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container,new NewGoodsFragment())
-                .add(R.id.fragment_container,new BoutiqueFragment())
-                .hide(mBoutiqueFragment)
+                .add(R.id.fragment_container,mNewGoodsFragment)
+                .add(R.id.fragment_container,mBoutiqueFragment)
                 .show(mNewGoodsFragment)
+                .hide(mBoutiqueFragment)
                 .commit();
     }
 
@@ -76,15 +78,18 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         setFragment();
-        if (index != currentindex) {
+        if (index != Currentindex) {
             setStatus();
         }
     }
 
     private void setFragment() {
-            getSupportFragmentManager().beginTransaction().show(mFragments[index])
-                    .hide(mFragments[currentindex])
+            getSupportFragmentManager().beginTransaction()
+                    .show(mFragments[index])
+                    .hide(mFragments[Currentindex])
                     .commit();
+        Log.e("MainActiivty",index + "");
+        Log.e("MainActiivty",Currentindex + "");
     }
 
     public void setStatus() {
@@ -95,6 +100,6 @@ public class MainActivity extends AppCompatActivity {
                 rbs[i].setChecked(true);
             }
         }
-        currentindex = index;
+        Currentindex = index;
     }
 }
