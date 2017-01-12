@@ -20,7 +20,8 @@
         <TextView
             android:id="@+id/tvTitle"
             android:layout_centerVertical="true"
-            android:text="返回"
+            android:text="Title"
+            android:textColor="@color/black_deep"
             android:layout_toRightOf="@id/ivBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

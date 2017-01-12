@@ -9,6 +9,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ucai.fulicenter.R;
+import cn.ucai.fulicenter.application.I;
 import cn.ucai.fulicenter.controller.fragment.NewGoodsFragment;
 import cn.ucai.fulicenter.view.MFGT;
 
@@ -28,7 +29,7 @@ public class BoutiqueChildActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, new NewGoodsFragment())
                 .commit();
-        tvTitle.setText(getIntent().getStringExtra("Title"));
+        tvTitle.setText(getIntent().getStringExtra(I.Boutique.NAME));
     }
 
     public void Back(View view) {
