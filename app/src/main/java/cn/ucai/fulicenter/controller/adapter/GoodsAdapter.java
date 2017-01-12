@@ -16,6 +16,7 @@ import cn.ucai.fulicenter.application.I;
 import cn.ucai.fulicenter.model.bean.NewGoodsBean;
 import cn.ucai.fulicenter.model.utils.ImageLoader;
 import cn.ucai.fulicenter.view.FooterViewHolder;
+import cn.ucai.fulicenter.view.MFGT;
 
 /**
  * Created by Administrator on 2017/1/11 0011.
@@ -99,7 +100,7 @@ public class GoodsAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if (getItemViewType(position) == I.TYPE_FOOTER) {
             FooterViewHolder fvh = (FooterViewHolder) holder;
             fvh.tvFooter.setText(getFooter());
@@ -109,6 +110,12 @@ public class GoodsAdapter extends RecyclerView.Adapter {
         ImageLoader.downloadImg(mContext, gvh.ivGoodsThumb, mList.get(position).getGoodsThumb());
         gvh.tvGoodsName.setText(mList.get(position).getGoodsName().toString());
         gvh.tvGoodsPrice.setText(mList.get(position).getCurrencyPrice().toString());
+        gvh.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MFGT.gotoGoodsDetail(mContext,mList.get(position).getGoodsId());
+            }
+        });
 
     }
 
