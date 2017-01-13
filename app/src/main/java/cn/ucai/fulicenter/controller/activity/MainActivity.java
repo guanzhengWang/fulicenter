@@ -11,6 +11,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.controller.fragment.BoutiqueFragment;
+import cn.ucai.fulicenter.controller.fragment.CategoryFragment;
 import cn.ucai.fulicenter.controller.fragment.NewGoodsFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     RadioButton layoutPersonal;
     NewGoodsFragment mNewGoodsFragment;
     BoutiqueFragment mBoutiqueFragment;
+    CategoryFragment mCategoryFragment;
 
     Fragment[] mFragments=new Fragment[5];
     @Override
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
         mNewGoodsFragment=new NewGoodsFragment();
         mBoutiqueFragment=new BoutiqueFragment();
+        mCategoryFragment=new CategoryFragment();
         rbs = new RadioButton[5];
 
         rbs[0] = layoutNewGood;
@@ -51,11 +54,14 @@ public class MainActivity extends AppCompatActivity {
         rbs[4] = layoutPersonal;
         mFragments[0]=mNewGoodsFragment;
         mFragments[1]=mBoutiqueFragment;
+        mFragments[2]=mCategoryFragment;
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container,mNewGoodsFragment)
                 .add(R.id.fragment_container,mBoutiqueFragment)
+                .add(R.id.fragment_container,mCategoryFragment)
                 .show(mNewGoodsFragment)
                 .hide(mBoutiqueFragment)
+                .hide(mCategoryFragment)
                 .commit();
     }
 
