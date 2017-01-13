@@ -30,6 +30,8 @@ public class CategorychildDetailActivity extends AppCompatActivity {
     @BindView(R.id.activity_categorychild_detail)
     LinearLayout activityCategorychildDetail;
     NewGoodsFragment mNewGoodsFragment;
+    boolean priceAsc =false;
+    boolean addtimeAsc=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,13 +49,25 @@ public class CategorychildDetailActivity extends AppCompatActivity {
 
     @OnClick({R.id.sort_addtime, R.id.sort_price})
     public void onClick(View view) {
+        int sortBy=I.SORT_BY_ADDTIME_ASC;
         switch (view.getId()) {
             case R.id.sort_addtime:
-                mNewGoodsFragment.sortGoods(I.SORT_BY_ADDTIME_ASC);
+                if(addtimeAsc) {
+                    sortBy=I.SORT_BY_ADDTIME_ASC;
+                }else {
+                    sortBy=I.SORT_BY_ADDTIME_DESC;
+                }
+                addtimeAsc=!addtimeAsc;
                 break;
             case R.id.sort_price:
-                mNewGoodsFragment.sortGoods(I.SORT_BY_PRICE_ASC);
+                if(priceAsc) {
+                    sortBy=I.SORT_BY_PRICE_ASC;
+                }else {
+                    sortBy=I.SORT_BY_PRICE_DESC;
+                }
+                priceAsc=!priceAsc;
                 break;
         }
+        mNewGoodsFragment.sortGoods(sortBy);
     }
 }
