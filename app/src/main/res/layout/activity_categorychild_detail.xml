@@ -31,6 +31,29 @@
             android:layout_centerVertical="true"
             android:src="@mipmap/expand_off"/>
     </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        >
+        <Button
+            android:id="@+id/sort_addtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="按时间排序"
+            android:layout_weight="1"
+            android:drawableRight="@drawable/arrow_order_down"
+            android:paddingRight="5dp"
+            />
+        <Button
+            android:id="@+id/sort_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="按价格排序"
+            android:layout_weight="1"
+            android:drawableRight="@drawable/arrow_order_down"
+            android:paddingRight="5dp"
+            />
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/fragment_container"

@@ -154,5 +154,8 @@ public class NewGoodsFragment extends Fragment {
         rv.addItemDecoration(new SpaceItemDecoration(30));
 
     }
+    public void sortGoods(int sortBy){
+        mAdapter.SorGoods(sortBy);
+    }
 
 }
