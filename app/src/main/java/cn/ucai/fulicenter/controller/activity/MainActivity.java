@@ -94,8 +94,8 @@ public class MainActivity extends AppCompatActivity {
                     .show(mFragments[index])
                     .hide(mFragments[Currentindex])
                     .commit();
-        Log.e("MainActiivty",index + "");
-        Log.e("MainActiivty",Currentindex + "");
+        Log.e("MainActivity",index + "");
+        Log.e("MainActivity",Currentindex + "");
     }
 
     public void setStatus() {

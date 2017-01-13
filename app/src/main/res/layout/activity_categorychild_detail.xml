@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_categorychild_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="cn.ucai.fulicenter.controller.activity.CategorychildDetailActivity">
+    <RelativeLayout
+        android:id="@+id/alertTitle"
+        android:background="#e6de11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:src="@drawable/back"
+            android:onClick="Back"/>
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_centerInParent="true"
+            android:text="Title"
+            android:textColor="@color/black_deep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tvTitle"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/expand_off"/>
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
