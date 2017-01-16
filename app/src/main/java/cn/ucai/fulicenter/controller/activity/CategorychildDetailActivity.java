@@ -10,12 +10,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.application.I;
 import cn.ucai.fulicenter.controller.fragment.NewGoodsFragment;
+import cn.ucai.fulicenter.model.bean.CategoryChildBean;
+import cn.ucai.fulicenter.view.CatFilterButton;
+import cn.ucai.fulicenter.view.MFGT;
 
 public class CategorychildDetailActivity extends AppCompatActivity {
 
@@ -34,6 +39,8 @@ public class CategorychildDetailActivity extends AppCompatActivity {
     Button sortAddtime;
     @BindView(R.id.sort_price)
     Button sortPrice;
+    @BindView(R.id.cat_Filter)
+    CatFilterButton catFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +51,9 @@ public class CategorychildDetailActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container, mNewGoodsFragment)
                 .commit();
+        String groupName = getIntent().getStringExtra(I.CategoryGroup.NAME);
+        ArrayList<CategoryChildBean> list = (ArrayList<CategoryChildBean>) getIntent().getSerializableExtra(I.CategoryChild.DATA);
+        catFilter.initCatFilterButton(groupName, list);
     }
 
     public void Back(View view) {
@@ -59,28 +69,33 @@ public class CategorychildDetailActivity extends AppCompatActivity {
             case R.id.sort_addtime:
                 if (addtimeAsc) {
                     sortBy = I.SORT_BY_ADDTIME_ASC;
-                    up.setBounds(0,0,up.getIntrinsicWidth(),up.getIntrinsicHeight());
-                    sortAddtime.setCompoundDrawables(null,null,up,null);
+                    up.setBounds(0, 0, up.getIntrinsicWidth(), up.getIntrinsicHeight());
+                    sortAddtime.setCompoundDrawables(null, null, up, null);
                 } else {
                     sortBy = I.SORT_BY_ADDTIME_DESC;
-                    down.setBounds(0,0,up.getIntrinsicWidth(),up.getIntrinsicHeight());
-                    sortAddtime.setCompoundDrawables(null,null,down,null);
+                    down.setBounds(0, 0, up.getIntrinsicWidth(), up.getIntrinsicHeight());
+                    sortAddtime.setCompoundDrawables(null, null, down, null);
                 }
                 addtimeAsc = !addtimeAsc;
                 break;
             case R.id.sort_price:
                 if (priceAsc) {
                     sortBy = I.SORT_BY_PRICE_ASC;
-                    up.setBounds(0,0,up.getIntrinsicWidth(),up.getIntrinsicHeight());
-                    sortPrice.setCompoundDrawables(null,null,up,null);
+                    up.setBounds(0, 0, up.getIntrinsicWidth(), up.getIntrinsicHeight());
+                    sortPrice.setCompoundDrawables(null, null, up, null);
                 } else {
                     sortBy = I.SORT_BY_PRICE_DESC;
-                    down.setBounds(0,0,up.getIntrinsicWidth(),up.getIntrinsicHeight());
-                    sortPrice.setCompoundDrawables(null,null,down,null);
+                    down.setBounds(0, 0, up.getIntrinsicWidth(), up.getIntrinsicHeight());
+                    sortPrice.setCompoundDrawables(null, null, down, null);
                 }
                 priceAsc = !priceAsc;
                 break;
         }
         mNewGoodsFragment.sortGoods(sortBy);
+    }
+
+    @OnClick(R.id.ivBack)
+    public void onClick() {
+        MFGT.finish(this);
     }
 }
