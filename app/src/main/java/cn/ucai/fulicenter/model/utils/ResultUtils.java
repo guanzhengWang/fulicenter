@@ -78,7 +78,7 @@ public class ResultUtils {
         return  null;
     }
 
-    public static ArrayList<CartBean> getCartFromJson(String jsonStr){
+    public static ArrayList<CartBean> getCartFromJson(String jsonStr, Class<javax.xml.transform.Result> resultClass){
         ArrayList<CartBean> list = null;
         try {
             if (jsonStr == null || jsonStr.isEmpty() || jsonStr.length() < 3) return null;
