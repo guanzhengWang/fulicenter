@@ -105,7 +105,6 @@ public class NewGoodsFragment extends Fragment {
                     @Override
                     public void onSuccess(NewGoodsBean[] result) {
                         ArrayList<NewGoodsBean> list = ConvertUtils.array2List(result);
-                        Log.e("main", Arrays.toString(result));
                         mAdapter.setMore(result != null && result.length > 0);
                         if (!mAdapter.isMore()) {
                             if (action == ACTION_PULL_UP) {

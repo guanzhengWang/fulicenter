@@ -25,7 +25,7 @@ public class SharePrefrenceUtils {
         return instance;
     }
     public  void saveUser(String username){
-        mEditor.putString(SHARE_KEY_USER_NAME,username).commit();
+        mEditor.putString(SHARE_PREFRENCE_NAME_USERNAME,username).commit();
     }
     public  String getUser(){
         return msharedpreferences.getString(SHARE_PREFRENCE_NAME_USERNAME,null);
