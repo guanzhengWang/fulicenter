@@ -16,6 +16,7 @@ import butterknife.OnClick;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.model.bean.CartBean;
 import cn.ucai.fulicenter.model.bean.Result;
+import cn.ucai.fulicenter.model.bean.User;
 import cn.ucai.fulicenter.model.net.IModelUser;
 import cn.ucai.fulicenter.model.net.ModelUser;
 import cn.ucai.fulicenter.model.net.OnCompleteListener;
@@ -87,7 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String str) {
                 if(str!=null){
-                    Result result =ResultUtils.getResultFromJson(str,Result.class);
+                    Result result =ResultUtils.getResultFromJson(str,User.class);
                     if(result !=null){
                         if(result.isRetMsg()){
                             CommonUtils.showLongToast(R.string.register_success);
