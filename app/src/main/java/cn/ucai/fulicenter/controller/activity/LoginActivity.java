@@ -24,6 +24,7 @@ import cn.ucai.fulicenter.model.net.OnCompleteListener;
 import cn.ucai.fulicenter.model.utils.CommonUtils;
 import cn.ucai.fulicenter.model.utils.ResultUtils;
 import cn.ucai.fulicenter.model.utils.SharePrefrenceUtils;
+import cn.ucai.fulicenter.view.DisplayUtils;
 import cn.ucai.fulicenter.view.MFGT;
 
 public class LoginActivity extends AppCompatActivity {
@@ -39,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        DisplayUtils.initBackTitle(this,"用户登录");
     }
 
     @OnClick({R.id.ivBack, R.id.btLogin, R.id.btRegister})
@@ -83,10 +85,12 @@ public class LoginActivity extends AppCompatActivity {
                             User user= (User) result.getRetData();
                             boolean saveUser= UserDao.getInstance().saveUser(user);
                             Log.e(TAG,"saveuser="+saveUser);
-                            SharePrefrenceUtils.getInstance(LoginActivity.this).saveUser(user.getMuserName());
-                            FuLiCenterApplication.setUser(user);
-                            setResult(RESULT_OK);
-                            MFGT.finish(LoginActivity.this);
+                            if(saveUser){
+                                SharePrefrenceUtils.getInstance(LoginActivity.this).saveUser(user.getMuserName());
+                                FuLiCenterApplication.setUser(user);
+                                setResult(RESULT_OK);
+                                MFGT.finish(LoginActivity.this);
+                            }
                         }else{
                             if(result.getRetCode()== I.MSG_LOGIN_UNKNOW_USER){
                                 CommonUtils.showLongToast(getString(R.string.login_fail_unknow_user));

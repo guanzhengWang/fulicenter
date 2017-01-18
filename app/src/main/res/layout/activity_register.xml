@@ -4,35 +4,21 @@
     android:id="@+id/activity_register"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    >
 
+    <include layout="@layout/commn_head_title"/>
     <RelativeLayout
+        android:layout_marginTop="40dp"
         android:id="@+id/RL_Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue">
+        >
 
-        <ImageView
-            android:id="@+id/ivBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onBack"
-            android:src="@drawable/back" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:gravity="center"
-            android:text="账号注册"
-            android:textSize="20dp" />
-    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/RL_Title"
         android:orientation="vertical">
 
 
@@ -172,4 +158,5 @@
         android:layout_marginTop="30dp"
         android:background="@color/personal_center_top_bg"
         android:text="注册" />
+</RelativeLayout>
 </RelativeLayout>
