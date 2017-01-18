@@ -14,5 +14,6 @@ import cn.ucai.fulicenter.model.utils.OkHttpUtils;
 
 public interface IModelGoodsDetail {
     void downData(Context context, int goodsId, OkHttpUtils.OnCompleteListener<GoodsDetailBean> listener);
-    void isCollecte(Context context, int goodsId, String username, OkHttpUtils.OnCompleteListener<MessageBean> listener);
+    void isCollect(Context context, int goodsId, String username, OkHttpUtils.OnCompleteListener<MessageBean> listener);
+    void setCollect(Context context, int goodsId, String username,int action, OkHttpUtils.OnCompleteListener<MessageBean> listener);
 }

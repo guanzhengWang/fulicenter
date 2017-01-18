@@ -23,6 +23,7 @@ import cn.ucai.fulicenter.model.bean.User;
 import cn.ucai.fulicenter.model.net.IModelGoodsDetail;
 import cn.ucai.fulicenter.model.net.ModelGoodsDetail;
 import cn.ucai.fulicenter.model.net.OnCompleteListener;
+import cn.ucai.fulicenter.model.utils.CommonUtils;
 import cn.ucai.fulicenter.view.FlowIndicator;
 import cn.ucai.fulicenter.view.MFGT;
 import cn.ucai.fulicenter.view.SlideAutoLoopView;
@@ -135,11 +136,31 @@ public class GoodsDetailActivity extends AppCompatActivity {
     public void setCollectListener(){
            User user=FuLiCenterApplication.getUser();
         if(user!=null){
-
+            setCollect(user);
         }else{
             MFGT.gotoLogin(this);
         }
     }
+
+    private void setCollect(User user) {
+        model.setCollect(this, goodsId, user.getMuserName(),
+                isCollect ? I.ACTION_DELETE_COLLECT : I.ACTION_ADD_COLLECT, new OnCompleteListener<MessageBean>() {
+                    @Override
+                    public void onSuccess(MessageBean result) {
+                        if(result!=null&&result.isSuccess()){
+                            isCollect=!isCollect;
+                            setCollectStatus();
+                            CommonUtils.showLongToast(result.getMsg());
+                        }
+                    }
+
+                    @Override
+                    public void onError(String error) {
+
+                    }
+                });
+    }
+
     private void setCollectStatus() {
         if(isCollect){
             ivGoodCollect.setImageResource(R.mipmap.bg_collect_out);
@@ -151,7 +172,7 @@ public class GoodsDetailActivity extends AppCompatActivity {
     private void initCollectStatus() {
         User user = FuLiCenterApplication.getUser();
         if (user != null) {
-            model.isCollecte(this, goodsId, user.getMuserName(), new OnCompleteListener<MessageBean>() {
+            model.isCollect(this, goodsId, user.getMuserName(), new OnCompleteListener<MessageBean>() {
                 @Override
                 public void onSuccess(MessageBean result) {
                     Log.e("cccc","result"+result);
