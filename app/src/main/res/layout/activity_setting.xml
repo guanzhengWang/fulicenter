@@ -30,6 +30,7 @@
         android:textColor="@color/black_deep" />
 </RelativeLayout>
 <RelativeLayout
+    android:id="@+id/rl_avatar"
     android:layout_marginTop="10dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -57,6 +58,7 @@
         android:layout_alignParentRight="true"/>
 </RelativeLayout>
 <RelativeLayout
+    android:id="@+id/rl_name"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <TextView
@@ -85,6 +87,7 @@
 
 </RelativeLayout>
     <RelativeLayout
+        android:id="@+id/rl_nick"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
