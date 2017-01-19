@@ -83,6 +83,26 @@ public class CollectBean implements Serializable{
     public CollectBean() {
     }
 
+    public CollectBean(int goodsId) {
+        this.goodsId = goodsId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CollectBean that = (CollectBean) o;
+
+        return goodsId == that.goodsId;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return goodsId;
+    }
+
     @Override
     public String toString() {
         return "CollectBean{" +

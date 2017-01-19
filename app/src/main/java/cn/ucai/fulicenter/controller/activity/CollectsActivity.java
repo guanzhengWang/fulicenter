@@ -1,5 +1,9 @@
 package cn.ucai.fulicenter.controller.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -45,7 +49,7 @@ public class CollectsActivity extends AppCompatActivity {
     GridLayoutManager gm;
     CollectsAdapter mAdapter;
     ArrayList<CollectBean> mList;
-    
+    receiver mreceiver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +63,15 @@ public class CollectsActivity extends AppCompatActivity {
             initData(ACTION_DOWNLOAD);
             setListener();
             initView();
+            setReceiver();
         }
+    }
+
+    private void setReceiver() {
+        mreceiver=new receiver();
+        IntentFilter intentFilter=new IntentFilter();
+        intentFilter.addAction(I.BROADCAST_UPDATA_COLLECT);
+        registerReceiver(mreceiver,intentFilter);
     }
 
     private void initView() {
@@ -144,6 +156,13 @@ public class CollectsActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    class receiver extends BroadcastReceiver{
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int id = intent.getIntExtra(I.Collect.GOODS_ID, 0);
+            mAdapter.removeItem(id);
+        }
     }
 
 }
