@@ -130,7 +130,6 @@ public class GoodsDetailActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         initCollectStatus();
-        setCollectStatus();
     }
     @OnClick(R.id.ivGoodCollect)
     public void setCollectListener(){
@@ -181,11 +180,13 @@ public class GoodsDetailActivity extends AppCompatActivity {
                     } else {
                         isCollect = false;
                     }
+                    setCollectStatus();
                 }
 
                 @Override
                 public void onError(String error) {
                     isCollect = false;
+                    setCollectStatus();
                 }
             });
         }
