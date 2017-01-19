@@ -15,6 +15,7 @@ import butterknife.ButterKnife;
 import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.application.FuLiCenterApplication;
 import cn.ucai.fulicenter.application.I;
+import cn.ucai.fulicenter.controller.adapter.CollectsAdapter;
 import cn.ucai.fulicenter.controller.adapter.GoodsAdapter;
 import cn.ucai.fulicenter.model.bean.CollectBean;
 import cn.ucai.fulicenter.model.bean.User;
@@ -22,6 +23,7 @@ import cn.ucai.fulicenter.model.net.IModelUser;
 import cn.ucai.fulicenter.model.net.ModelUser;
 import cn.ucai.fulicenter.model.net.OnCompleteListener;
 import cn.ucai.fulicenter.model.utils.ConvertUtils;
+import cn.ucai.fulicenter.model.utils.SpaceItemDecoration;
 import cn.ucai.fulicenter.view.DisplayUtils;
 
 public class CollectsActivity extends AppCompatActivity {
@@ -35,6 +37,9 @@ public class CollectsActivity extends AppCompatActivity {
     IModelUser model;
     User user;
     int pageId=1;
+    GridLayoutManager gm;
+    CollectsAdapter mAdapter;
+    ArrayList<CollectBean> mList;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,12 +51,25 @@ public class CollectsActivity extends AppCompatActivity {
         if(user==null){
 
         }else {
-            initView();
             initData();
+            initView();
         }
     }
 
     private void initView() {
+        srl.setColorSchemeColors(
+                getResources().getColor(R.color.google_blue),
+                getResources().getColor(R.color.google_green),
+                getResources().getColor(R.color.google_red),
+                getResources().getColor(R.color.google_yellow)
+        );
+        gm = new GridLayoutManager(this, I.COLUM_NUM);
+        mList=new ArrayList<>();
+        rv.setLayoutManager(gm);
+        rv.setHasFixedSize(true);
+        mAdapter = new CollectsAdapter(this,mList);
+        rv.setAdapter(mAdapter);
+        rv.addItemDecoration(new SpaceItemDecoration(30));
     }
 
     private void initData() {
@@ -64,6 +82,7 @@ public class CollectsActivity extends AppCompatActivity {
                 }else {
                     ArrayList<CollectBean> list = ConvertUtils.array2List(result);
                     Log.e("COLLECT","list:"+list.size());
+                    mAdapter.initData(list);
                 }
             }
 
