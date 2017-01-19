@@ -106,10 +106,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setFragment() {
+        if(index!=Currentindex){
             getSupportFragmentManager().beginTransaction()
                     .show(mFragments[index])
                     .hide(mFragments[Currentindex])
                     .commit();
+        }else{
+            getSupportFragmentManager().beginTransaction()
+                    .show(mFragments[index])
+                    .commit();
+        }
         Log.e("MainActivity",index + "");
         Log.e("MainActivity",Currentindex + "");
     }
