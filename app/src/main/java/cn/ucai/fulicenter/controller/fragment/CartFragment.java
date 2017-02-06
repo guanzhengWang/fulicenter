@@ -170,7 +170,7 @@ public class CartFragment extends Fragment {
     @OnClick(R.id.bt_account)
     public void onClick() {
         if(priceSum>0){
-            MFGT.gotoOrder(getContext(),priceSum);
+            MFGT.gotoOrder(getActivity(),priceSum);
         }else {
             CommonUtils.showLongToast(R.string.order_nothing);
         }
