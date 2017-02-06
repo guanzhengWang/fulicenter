@@ -27,4 +27,5 @@ public interface IModelUser {
     void addCart(Context context, String username,int goodsId,int count,OnCompleteListener<MessageBean>listener);
     void delCart(Context context, int cartId, OnCompleteListener<MessageBean> listener);
     void updateCart(Context context, int cartId, int count, OnCompleteListener<MessageBean> listener);
+    void updateCart(Context context, int action, String username, int goodsId, int count ,int cartId,OnCompleteListener<MessageBean> listener);
 }

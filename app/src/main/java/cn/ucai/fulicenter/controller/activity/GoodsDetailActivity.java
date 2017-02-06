@@ -21,7 +21,9 @@ import cn.ucai.fulicenter.model.bean.GoodsDetailBean;
 import cn.ucai.fulicenter.model.bean.MessageBean;
 import cn.ucai.fulicenter.model.bean.User;
 import cn.ucai.fulicenter.model.net.IModelGoodsDetail;
+import cn.ucai.fulicenter.model.net.IModelUser;
 import cn.ucai.fulicenter.model.net.ModelGoodsDetail;
+import cn.ucai.fulicenter.model.net.ModelUser;
 import cn.ucai.fulicenter.model.net.OnCompleteListener;
 import cn.ucai.fulicenter.model.utils.CommonUtils;
 import cn.ucai.fulicenter.view.FlowIndicator;
@@ -59,6 +61,7 @@ public class GoodsDetailActivity extends AppCompatActivity {
     @BindView(R.id.activity_goods_detail)
     LinearLayout activityGoodsDetail;
     IModelGoodsDetail model;
+    IModelUser userModel;
     int goodsId;
     boolean isCollect;
 
@@ -150,7 +153,7 @@ public class GoodsDetailActivity extends AppCompatActivity {
                             isCollect=!isCollect;
                             setCollectStatus();
                             CommonUtils.showLongToast(result.getMsg());
-                            sendBroadcast(new Intent(I.BROADCAST_UPDATA_COLLECT).putExtra(I.Collect.GOODS_ID,goodsId));
+                            sendBroadcast(new Intent(I.BROADCAST_UPDATE_COLLECT).putExtra(I.Collect.GOODS_ID,goodsId));
                         }
                     }
 
@@ -190,6 +193,28 @@ public class GoodsDetailActivity extends AppCompatActivity {
                     setCollectStatus();
                 }
             });
+        }
+    }
+    @OnClick(R.id.ivGoodCart)
+    public void addCart(){
+        User user=FuLiCenterApplication.getUser();
+        if(user!=null) {
+            userModel = new ModelUser();
+            userModel.updateCart(this, I.ACTION_CART_ADD, user.getMuserName(), goodsId, 1, 0, new OnCompleteListener<MessageBean>() {
+                @Override
+                public void onSuccess(MessageBean result) {
+                    if(result!=null&&result.isSuccess()){
+                        CommonUtils.showLongToast(R.string.add_goods_success);
+                    }
+                }
+
+                @Override
+                public void onError(String error) {
+
+                }
+            });
+        }else{
+            MFGT.gotoLogin(this);
         }
     }
 }

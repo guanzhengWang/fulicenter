@@ -77,4 +77,7 @@ public class MFGT {
     public static void gotoCollectsActivity(Activity activity) {
         startActivity(activity, CollectsActivity.class);
     }
+
+    public static void gotoOrder(Context context, int priceSum) {
+    }
 }

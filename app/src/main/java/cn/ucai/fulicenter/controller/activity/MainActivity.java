@@ -14,6 +14,7 @@ import cn.ucai.fulicenter.R;
 import cn.ucai.fulicenter.application.FuLiCenterApplication;
 import cn.ucai.fulicenter.application.I;
 import cn.ucai.fulicenter.controller.fragment.BoutiqueFragment;
+import cn.ucai.fulicenter.controller.fragment.CartFragment;
 import cn.ucai.fulicenter.controller.fragment.CategoryFragment;
 import cn.ucai.fulicenter.controller.fragment.NewGoodsFragment;
 import cn.ucai.fulicenter.controller.fragment.PersonalCenterFragment;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     BoutiqueFragment mBoutiqueFragment;
     CategoryFragment mCategoryFragment;
     PersonalCenterFragment mPersonalCenterFragment;
+    CartFragment mCartFragment;
 
     Fragment[] mFragments=new Fragment[5];
     @Override
@@ -51,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         mNewGoodsFragment=new NewGoodsFragment();
         mBoutiqueFragment=new BoutiqueFragment();
         mCategoryFragment=new CategoryFragment();
+        mCartFragment=new CartFragment();
         mPersonalCenterFragment=new PersonalCenterFragment();
 
         rbs = new RadioButton[5];
@@ -63,16 +66,19 @@ public class MainActivity extends AppCompatActivity {
         mFragments[0]=mNewGoodsFragment;
         mFragments[1]=mBoutiqueFragment;
         mFragments[2]=mCategoryFragment;
+        mFragments[3]=mCartFragment;
         mFragments[4]=mPersonalCenterFragment;
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragment_container,mNewGoodsFragment)
                 .add(R.id.fragment_container,mBoutiqueFragment)
                 .add(R.id.fragment_container,mCategoryFragment)
+                .add(R.id.fragment_container,mCartFragment)
                 .add(R.id.fragment_container,mPersonalCenterFragment)
                 .show(mNewGoodsFragment)
                 .hide(mBoutiqueFragment)
                 .hide(mCategoryFragment)
                 .hide(mPersonalCenterFragment)
+                .hide(mCartFragment)
                 .commit();
     }
 

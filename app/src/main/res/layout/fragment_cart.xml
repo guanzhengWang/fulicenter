@@ -19,18 +19,32 @@
             <include layout="@layout/layout_refresh_title" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rv"
+                android:id="@+id/recy_new_goods"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
             </android.support.v7.widget.RecyclerView>
         </LinearLayout>
     </android.support.v4.widget.SwipeRefreshLayout>
+
     <Button
-        android:layout_width="match_parent"
+        android:id="@+id/bt_account"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="结算"
+        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
+        />
+    <TextView
+        android:id="@+id/tvSum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/bt_account"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp"
+        android:text="合计:0"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
         />
 
 </RelativeLayout>

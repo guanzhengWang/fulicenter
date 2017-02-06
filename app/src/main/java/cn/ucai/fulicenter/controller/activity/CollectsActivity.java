@@ -70,7 +70,7 @@ public class CollectsActivity extends AppCompatActivity {
     private void setReceiver() {
         mreceiver=new receiver();
         IntentFilter intentFilter=new IntentFilter();
-        intentFilter.addAction(I.BROADCAST_UPDATA_COLLECT);
+        intentFilter.addAction(I.BROADCAST_UPDATE_COLLECT);
         registerReceiver(mreceiver,intentFilter);
     }
 
